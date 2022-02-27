@@ -72,7 +72,7 @@ python3 ./CVE-2021-1675.py ./tony:liltony@10.10.11.106 'C:\Users\tony\Documents\
 ```
 This gave me system shell and allowed me to read the root flag. 
 
-After machine retired I watched ippsecs's [walktrough](https://www.youtube.com/watch?v=N2ahkarb-zI). One of the privilege escalations used in the video also is PrintNightmare, but with the [powershell script](https://github.com/JohnHammond/CVE-2021-34527) by John Hammond and Caleb Stewart. However there is a second way to escalate privileges using an exploit for a Rico printer driver for which an metasploit module seems to exist. 
+After machine retired I watched ippsecs's [walktrough](https://www.youtube.com/watch?v=N2ahkarb-zI). One of the privilege escalations used in the video also is PrintNightmare, but with the [powershell script](https://github.com/JohnHammond/CVE-2021-34527) by John Hammond and Caleb Stewart. However there is a second way to escalate privileges using an exploit for a Ricoh printer driver for which an metasploit module seems to exist. 
 
 Small sidenote: If you ever want to exploit PrintNightmare on a Windows 2008 system you can use [this](https://github.com/evilashz/CVE-2021-1675-LPE-EXP) exploit. I had problems getting the powershell exploit to run on such a system before and this worked for me.
 
