@@ -7,7 +7,7 @@ layout: post
 ---
 
 # Hack the Box Driver Writeup
-Driver was an easy Windows box from Hackt the Box.
+Driver was an easy Windows box from Hack the Box created by MrR3boot.
 ## Recon
 I started by doing an nmap scan of the box:
 ```
@@ -28,7 +28,7 @@ Nmap done: 1 IP address (1 host up) scanned in 105.22 seconds
 I then looked at the http server first. You get prompted for basic auth credentials, but `admin`/`admin` works and gives us access to a Website called "MFP Firmaware Update Center". 
 
 ## Foothold
-The most interesting part of this page is a file upload under the "Firmware Updates" tab. I tried around with this upload for a bit and uploaded e.g. executables, as the site claims these should be tested. However after a time I gave up on this. As this is a Windows box an other option would be to trigger an NTLM connection using the file upload. I saw something similar on HtB in the past with an SQL injection, that you could exploit to get an NTLM connection.
+The most interesting part of the web page is a file upload under the "Firmware Updates" tab. I tried around with this upload for a bit and uploaded e.g. executables, as the site claims these should be tested. However after a time I gave up on this. As this is a Windows box an other option would be to trigger an NTLM connection using the file upload. I saw something similar on HtB in the past with an SQL injection, that you could exploit to get an NTLM connection.
 
 We can trigger an NTLM connection in this case by uploading an `.scf` file. There is a blog post on [pentesterlab](https://pentestlab.blog/2017/12/13/smb-share-scf-file-attacks/) about this. First I started responder using:
 ```
@@ -44,7 +44,7 @@ Command=ToggleDesktop
 ```
 This gave me a hash:
 ```
-SMB] NTLMv2 Hash     : tony::DRIVER:3cf88c22c2b5dfe0:75CF7454B42FD9A156C2525353940DFF:010100000000000087E8256E9326D8017C77361926092FA000000000020000000000000000000000
+[SMB] NTLMv2 Hash     : tony::DRIVER:3cf88c22c2b5dfe0:75CF7454B42FD9A156C2525353940DFF:010100000000000087E8256E9326D8017C77361926092FA000000000020000000000000000000000
 ```
 Sadly this is no NetNTLMv1 Hash, however I was able to crack it using hashcat as the password was contained in rockyou.txt:
 ```
