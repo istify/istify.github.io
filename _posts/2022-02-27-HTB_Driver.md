@@ -32,7 +32,7 @@ The most interesting part of the web page is a file upload under the "Firmware U
 
 We can trigger an NTLM connection in this case by uploading an `.scf` file. There is a blog post on [pentesterlab](https://pentestlab.blog/2017/12/13/smb-share-scf-file-attacks/) about this. First I started responder using:
 ```
-sudo responder -I tun0 -lm
+sudo responder -I tun0 --lm
 ```
 Then I created an `.scf` file and uploaded it. The file I created looked as follows:
 ```
