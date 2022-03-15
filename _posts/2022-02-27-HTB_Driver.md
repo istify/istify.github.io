@@ -1,5 +1,5 @@
 ---
-title: Hack the Box - Driver Writeup
+title: Hack the Box Writeup - Driver
 author: istify
 date: 2022-02-27
 category: Hack the Box
