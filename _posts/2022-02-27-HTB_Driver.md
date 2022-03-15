@@ -1,12 +1,12 @@
 ---
-title: HtB Driver
+title: Hack the Box - Driver Writeup
 author: istify
 date: 2022-02-27
 category: Hack the Box
 layout: post
 ---
 
-# Hack the Box Driver Writeup
+# Driver Writeup
 Driver was an easy Windows box from Hack the Box created by MrR3boot.
 ## Recon
 I started by doing an nmap scan of the box:
